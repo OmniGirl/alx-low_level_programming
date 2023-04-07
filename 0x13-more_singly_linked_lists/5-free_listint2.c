@@ -1,19 +1,32 @@
-#include <stdlib.h>
+#include "lists.h"
+/**
+ * free_listint2 - Frees a linked list of type listint_t.
+ * @head: Double pointer to the head of the list.
+ *
+ * Description: This function frees each node in the linked list by
+ *              traversing the list and freeing each node in turn.
+ *              It also sets the head pointer to NULL.
+ */
+void free_listint2(listint_t **head)
+{
+listint_t *temp;
 
-typedef struct listint_t
+if (head == NULL)
+return;
+
+while (*head)
 {
-int data;
-struct listint_t *next;
+/* Save a pointer to the next node */
+temp = (*head)->next;
+
+/* Free the current node */
+free(*head);
+
+/* Move to the next node */
+*head = temp;
 }
-listint_t;
-void free_list(listint_t **head)
-{
-listint_t *current = *head;
-while (current != NULL)
-{
-listint_t *next = current->next;
-free(current);
-current = next;
-}
+
+/* Set the head pointer to NULL */
 *head = NULL;
 }
+
