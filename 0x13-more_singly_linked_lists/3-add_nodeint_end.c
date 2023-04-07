@@ -8,9 +8,11 @@
  *
  * Return: pointer to the new node, or NULL if it fails
  */
+
 listint_t *add_nodeint_end(listint_t **head, const int n)
 {
 listint_t *new_node = malloc(sizeof(listint_t));
+listint_t *current_node;
 
 if (new_node == NULL)
 return (NULL);
@@ -23,11 +25,10 @@ if (*head == NULL)
 *head = new_node;
 return (new_node);
 }
-listint_t *current_node = *head;
+current_node = *head;
 while (current_node->next != NULL)
 current_node = current_node->next;
 
 current_node->next = new_node;
 return (new_node);
 }
-
